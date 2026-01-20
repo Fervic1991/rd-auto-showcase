@@ -70,37 +70,58 @@ export function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile Menu Overlay - Full screen, solid background */}
       {isOpen && (
-        <div className="lg:hidden fixed inset-0 top-20 bg-background z-40">
-          <div className="container-custom py-8">
-            <div className="flex flex-col gap-4">
+        <div 
+          className="lg:hidden fixed inset-0 w-screen h-screen z-[9999] flex flex-col"
+          style={{ backgroundColor: 'hsl(215, 25%, 12%)' }}
+        >
+          {/* Header with logo and close button */}
+          <div className="flex items-center justify-between h-20 px-4 sm:px-6 border-b border-white/10">
+            <Link to="/" onClick={() => setIsOpen(false)} className="flex items-center gap-2">
+              <span className="font-display text-2xl font-bold text-white">RD</span>
+              <span className="font-display text-2xl font-bold text-accent">Auto</span>
+            </Link>
+            <button
+              onClick={() => setIsOpen(false)}
+              className="p-2 text-white hover:text-accent transition-colors"
+              aria-label="Chiudi menu"
+            >
+              <X className="w-8 h-8" />
+            </button>
+          </div>
+
+          {/* Navigation Links */}
+          <div className="flex-1 overflow-y-auto px-6 py-8">
+            <div className="flex flex-col gap-2">
               {navLinks.map((link) => (
                 <Link
                   key={link.path}
                   to={link.path}
                   onClick={() => setIsOpen(false)}
-                  className={`text-lg font-medium py-3 border-b border-border transition-colors hover:text-accent ${
-                    isActive(link.path) ? "text-accent" : "text-foreground"
+                  className={`text-xl font-medium py-4 border-b border-white/10 transition-colors ${
+                    isActive(link.path) ? "text-accent" : "text-white hover:text-accent"
                   }`}
                 >
                   {link.name}
                 </Link>
               ))}
-              <div className="flex flex-col gap-3 pt-6">
-                <Button variant="whatsapp" size="lg" asChild>
-                  <a href="https://wa.me/390000000000" target="_blank" rel="noopener noreferrer">
-                    <MessageCircle className="w-5 h-5" />
-                    WhatsApp
-                  </a>
-                </Button>
-                <Button variant="cta" size="lg" asChild>
-                  <a href="tel:+390000000000">
-                    <Phone className="w-5 h-5" />
-                    Chiama Ora
-                  </a>
-                </Button>
-              </div>
+            </div>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-col gap-4 pt-8">
+              <Button variant="whatsapp" size="lg" className="w-full text-lg py-6" asChild>
+                <a href="https://wa.me/390000000000" target="_blank" rel="noopener noreferrer">
+                  <MessageCircle className="w-6 h-6" />
+                  WhatsApp
+                </a>
+              </Button>
+              <Button variant="cta" size="lg" className="w-full text-lg py-6" asChild>
+                <a href="tel:+390000000000">
+                  <Phone className="w-6 h-6" />
+                  Chiama Ora
+                </a>
+              </Button>
             </div>
           </div>
         </div>
