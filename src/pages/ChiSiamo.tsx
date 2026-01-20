@@ -161,7 +161,7 @@ export default function ChiSiamo() {
             {certifications.map((cert, index) => (
               <div
                 key={cert.title}
-                className="bg-card rounded-2xl p-6 shadow-card hover:shadow-card-hover transition-all duration-300 border border-border/50 animate-fade-in"
+                className="bg-card rounded-2xl p-6 shadow-card hover:shadow-card-hover transition-all duration-300 border border-border/50 animate-fade-in flex flex-col"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div className="flex items-center gap-3 mb-4">
@@ -185,7 +185,7 @@ export default function ChiSiamo() {
                   {cert.description}
                 </p>
                 
-                <Button variant="outline" size="sm" className="w-full">
+                <Button variant="outline" size="sm" className="w-full mt-auto">
                   Dettagli progetto
                   <ArrowRight className="w-4 h-4" />
                 </Button>
