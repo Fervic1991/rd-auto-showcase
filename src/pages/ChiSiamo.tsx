@@ -1,7 +1,7 @@
 import { Layout } from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { CheckCircle, Users, Target, Heart, ArrowRight } from "lucide-react";
+import { CheckCircle, Users, Target, Heart, ArrowRight, Award, Leaf, Wrench } from "lucide-react";
 
 const values = [
   {
@@ -23,6 +23,30 @@ const values = [
     icon: Heart,
     title: "Passione",
     description: "L'amore per le auto guida ogni nostra azione quotidiana.",
+  },
+];
+
+const certifications = [
+  {
+    icon: Award,
+    title: "Digitalizzazione PMI",
+    year: "2023",
+    description: "Progetto finanziato dalla Regione per l'ammodernamento digitale della gestione ordini e preventivi.",
+    fundedBy: "Regione Emilia-Romagna",
+  },
+  {
+    icon: Leaf,
+    title: "Efficienza Energetica",
+    year: "2022",
+    description: "Installazione impianto fotovoltaico e cabina verniciatura a basso impatto ambientale.",
+    fundedBy: "Fondo Europeo FESR",
+  },
+  {
+    icon: Wrench,
+    title: "Formazione Tecnica",
+    year: "2024",
+    description: "Aggiornamento professionale del personale su nuove tecnologie di riparazione e materiali.",
+    fundedBy: "Fondo Sociale Europeo",
   },
 ];
 
@@ -115,6 +139,56 @@ export default function ChiSiamo() {
                 <p className="text-muted-foreground text-sm">
                   {value.description}
                 </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Certifications Section */}
+      <section className="section-padding">
+        <div className="container-custom">
+          <div className="text-center mb-12">
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
+              Certificazioni e Progetti Finanziati
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Investiamo costantemente in innovazione e formazione grazie a fondi europei e regionali
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {certifications.map((cert, index) => (
+              <div
+                key={cert.title}
+                className="bg-card rounded-2xl p-6 shadow-card hover:shadow-card-hover transition-all duration-300 border border-border/50 animate-fade-in"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
+                    <cert.icon className="w-6 h-6 text-primary" />
+                  </div>
+                  <span className="text-sm font-medium text-accent bg-accent/10 px-3 py-1 rounded-full">
+                    {cert.year}
+                  </span>
+                </div>
+                
+                <h3 className="font-display text-lg font-bold text-foreground mb-2">
+                  {cert.title}
+                </h3>
+                
+                <p className="text-xs text-primary font-medium mb-2">
+                  {cert.fundedBy}
+                </p>
+                
+                <p className="text-muted-foreground text-sm mb-4 leading-relaxed">
+                  {cert.description}
+                </p>
+                
+                <Button variant="outline" size="sm" className="w-full">
+                  Dettagli progetto
+                  <ArrowRight className="w-4 h-4" />
+                </Button>
               </div>
             ))}
           </div>
